@@ -75,7 +75,7 @@
             txt_subtotal.innerHTML = orderedList[index].harga * orderedList[index].qty;
 
             // Ubah jumlah total
-            $('#total').html(sum());
+            $('#total').html(`Rp.${sum()}`);
         };
 
         // Events
