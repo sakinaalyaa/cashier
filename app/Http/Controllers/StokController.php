@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-// use App\Exports\KaryawanExport;
-
 use App\Exports\stokExport;
 use App\Models\Stok;
 use App\Http\Requests\StoreStokRequest;
 use App\Http\Requests\UpdateStokRequest;
+use App\Imports\stokImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -74,5 +73,11 @@ class StokController extends Controller
         $stok = stok::all();
         $pdf = Pdf::loadView('stok.data', compact('stok'));
         return $pdf->download('stok.pdf');
+    }
+
+    public function imprtData(){
+        Excel::import(new stokImport, request()->file('import'));
+
+        return redirect(request()->segment(1).'/stok')->with('succes','Import data stok berhasil!');
     }
 }

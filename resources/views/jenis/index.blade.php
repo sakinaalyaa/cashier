@@ -57,6 +57,9 @@
             <i class="fas fa-file-pdf"></i> Export PDF
             </a>
 
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cikiniw">
+            <i class="fas fa-file-excel"></i> Import</button>
+
             @include('jenis.data')
 
         </div>
@@ -68,7 +71,7 @@
     </div>
     <!-- /.card -->
 
-
+    @include('menu.import')
 </section>
 
 @include('jenis.form')
@@ -99,7 +102,7 @@
         Swal.fire({
             icon: 'error',
             title: 'Hapus Data',
-            html: `Apakah data <b>${nama_jenis}</b> akan di hapus?`,
+            html: `Apakah data <b>${nama}</b> akan di hapus?`,
             confirmButtonText: 'Ya',
             denyButtonText: 'Tidak',
             'showDenyButton': true,
@@ -117,12 +120,12 @@
             let button = $(e.relatedTarget)
             let id = $(button).data('id')
             let nama_jenis = $(button).data('nama_jenis')
-            let category_id = $(button).data('category_id')
+           
 
 
 
             $(this).find('#nama_jenis').val(nama_jenis)
-            $(this).find('#category_id ').val(category_id)
+            
 
 
             $('#edit-form').attr('action', `/jenis/${id}`)

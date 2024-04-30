@@ -45,7 +45,7 @@
             </div>
             @endif
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormPelanggan">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nambah">
                 <i class="fas fa-plus"></i> Tambah Pelanggan
             </button>
 
@@ -57,7 +57,7 @@
             <i class="fas fa-file-pdf"></i> Export PDF
             </a>
 
-            <button type="button" class="btn btn-warning"data-toggle="modal" data-target="#formImport">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cikiniw">
             <i class="fas fa-file-excel"></i> Import</button>
 
             @include('pelanggan.data')
@@ -71,7 +71,7 @@
     </div>
     <!-- /.card -->
 
-
+    @include('pelanggan.import')
 </section>
 
 @include('pelanggan.form')

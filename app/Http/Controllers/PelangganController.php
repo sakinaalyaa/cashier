@@ -6,6 +6,7 @@ use App\Exports\pelangganExport;
 use App\Models\pelanggan;
 use App\Http\Requests\StorepelangganRequest;
 use App\Http\Requests\UpdatepelangganRequest;
+use App\Imports\pelangganImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -70,4 +71,11 @@ class pelangganController extends Controller
         $pdf = Pdf::loadView('pelanggan.data', compact('pelanggan'));
         return $pdf->download('pelanggan.pdf');
     }
+
+    public function importData(){
+        Excel::import(new pelangganImport, request()->file('import'));
+
+        return redirect(request()->segment(1).'/pelanggan')->with('succes','Import data pelanggan berhasil!');
+    }
+
 }

@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\menu;
+use App\Imports\MenuImport;
 use App\Exports\MenuExport;
 use App\Models\Jenis;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
-use App\Models\menu;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 use PDOException;
-use App\Imports\MenuImport;
 
 class MenuController extends Controller
 {
@@ -26,8 +27,8 @@ class MenuController extends Controller
             $menu = menu::latest()->get();
             return view('menu.index', compact('menu'));
         } catch (QueryException | Exception | PDOException $error) {
-            //    $this->failResponse($error->getMessage(), $error->getCode());
-            // return redirect()->back()->withErrors(['message' => 'Terjadi error']);
+               $this->failResponse($error->getMessage(), $error->getCode());
+            return redirect()->back()->withErrors(['message' => 'Terjadi error']);
         }
     }
     /**
@@ -73,10 +74,11 @@ class MenuController extends Controller
         return $pdf->download('menu.pdf');
     }
 
-    public function importData()
-    {
+
+     public function importData(){
         Excel::import(new MenuImport, request()->file('import'));
 
-        return redirect(request()->segment(1).'/Menu')->with('succes, Import data succesfully!');
+        return redirect(request()->segment(1).'/menu/import')->with('succes','Import data menu berhasil!');
     }
+    
 }

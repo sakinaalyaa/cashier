@@ -10,7 +10,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-        
+
             {{-- <h3 class="card-title">menu </h3> --}}
             <!-- <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -53,15 +53,19 @@
             <a href="{{ route('tidak') }}" class="btn btn-success">
                 <i class="fas fa-file-excel"></i> Export XSLX
             </a>
-            
+
             <a href="{{ route('hiu') }}" class="btn btn-danger">
-            <i class="fas fa-file-pdf"></i> Export PDF
+                <i class="fas fa-file-pdf"></i> Export PDF
             </a>
-            
-            <button type="button" class="btn btn-warning"data-toggle="modal" data-target="#formImport">
-            <i class="fas fa-file-excel"></i> Import</button>
+
+            <button href="{{ 'import-menu' }}" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cikiniw">
+                <i class="fa fa-file-excel"></i> Import
+            </button>
+
 
             @include('menu.data')
+
+            @include('menu.edit')
 
         </div>
         <!-- /.card-body -->
@@ -72,11 +76,11 @@
     </div>
     <!-- /.card -->
 
-
+    @include('menu.import')
 </section>
 
 @include('menu.form')
-@include('menu.edit')
+
 @endsection
 
 
@@ -101,7 +105,7 @@
     $('.delete-data').on('click', function(e) {
         const nama = $(this).closest('tr').find('td:eq(1)').text();
         console.log('tes')
-        Swal.fire({ 
+        Swal.fire({
             icon: 'error',
             title: 'Hapus Data',
             html: `Apakah data <b>${nama}</b> akan di hapus?`,

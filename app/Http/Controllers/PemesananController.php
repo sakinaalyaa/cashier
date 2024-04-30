@@ -6,7 +6,10 @@ use App\Models\pemesanan;
 use App\Http\Requests\StorepemesananRequest;
 use App\Http\Requests\UpdatepemesananRequest;
 use App\Models\jenis;
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class pemesananController extends Controller
 {
@@ -15,13 +18,11 @@ class pemesananController extends Controller
      */
     public function index()
     {
-        // $data['jenis'] = jenis::with(['menu'])->get();
-        // return view('pemesanan.index')->with($data);
-        $data['pemesanan'] = Pemesanan::orderBy('created_at', 'DESC')->get();
-        $jenis = jenis::all();
+        $data['jenis'] = Jenis::with(['menu'])->get();
+        // dd($data['jenis']);
+        // dd($data);
 
-
-        return view('pemesanan.index', compact('data', 'jenis'));
+        return view('pemesanan.index')->with($data);
     }
 
     /**
@@ -39,29 +40,45 @@ class pemesananController extends Controller
     {
         $validated = $request->validated();
         DB::beginTransaction();
-
-
-        pemesanan::create($validated);
-        DB::table('pemesanan')->insert($validated);
+        //$pemesanan = Pemesanan::create($request->validated());
+        //$pemesan = Pemesan::create($request->validated()); // Assuming you have Pemesan model
+        //$pemesanan->pemesan()->associate($pemesan);
+        pemesanan::create($request->all());
         DB::commit();
         return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(pemesanan $pemesanan)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(pemesanan $pemesanan)
     {
-        $pemesanan = pemesanan::findOrFail($id);
-        return view('pemesanan.edit', compact('pemesanan'));
+        //
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(UpdatepemesananRequest $request, pemesanan $pemesanan)
     {
-        $validatedData = $request->validated();
-        $pemesanan->update($validatedData);
-        return redirect()->route('pemesanan.index')->with('success', 'pemesanan updated successfully');
+        try {
+            DB::beginTransaction();
+            $pemesanan = pemesanan::findOrFail($pemesanan);
+            $validate = $request->validated();
+            $pemesanan->update($validate);
+            DB::commit();
+            return redirect()->back()->with('success', 'data berhasil di ubah');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['message' => 'terjadi kesalahan']);
+        }
     }
 
     /**
@@ -69,7 +86,11 @@ class pemesananController extends Controller
      */
     public function destroy(pemesanan $pemesanan)
     {
-        $pemesanan->delete();
-        return redirect('pemesanan')->with('success', 'Data berhasil dihapus!');
+        try {
+            $pemesanan->delete();
+            return redirect('/pemesanan')->with('success', 'Data berhasil dihapus');
+        } catch (QueryException | Exception | PDOException $error) {
+            $this->failResponse($error->getMessage(), $error->getCode());
+        }
     }
 }

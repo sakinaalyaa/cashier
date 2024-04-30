@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_transaksis', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('transaksi_id');
+        Schema::create('detail_transaksi', function (Blueprint $table) {
+            $table->string('id');
+            $table->string('transaksi_id');
             $table->unsignedBigInteger('menu_id');
             $table->integer('jumlah');
             $table->double('subtotal');

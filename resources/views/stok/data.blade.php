@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>No.</th>
+            <th>Menu Id</th>
             <th>Jumlah</th>
             <th>Action</th>
         </tr>
@@ -10,10 +11,12 @@
         @foreach ($stok as $p)
         <tr>
             <td>{{ $i = !isset($i) ? ($i = 1) : ++$i }}</td>
+            <td>{{$p->menu_id}}</td>
             <td>{{$p->jumlah}}</td>
 
             <td>
-                <button type="button" class="btn btn-primary btn-edit" data-bs-toggle="modal" data-bs-target="#modalEditStok" data-mode="edit" data-id="{{ $p->id }}" data-jumlah="{{ $p->jumlah }}"><i class="fas fa-edit"></i>
+                <button type="button" class="btn btn-primary btn-edit" data-bs-toggle="modal" data-bs-target="#modalEditStok" data-mode="edit" data-id="{{ $p->id }}" data-menu_id="{{ $p->menu_id }}" data-jumlah="{{ $p->jumlah }}">
+                    <i class="fas fa-edit"></i>
                 </button>
                 <form action="{{ route('stok.destroy', $p->id) }}" method="POST">
                     @method('DELETE')

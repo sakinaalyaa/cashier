@@ -18,10 +18,10 @@
                         <input type="text" class="form-control" id="nama_jenis" placeholder="nama_jenis" name="nama_jenis">
                     </div>
                     
-                    <label for="category_id" class="col-sm-2 col-form-label">Category Id</label>
+                    <!-- <label for="category_id" class="col-sm-2 col-form-label">Category Id</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="category_id" placeholder="category_id" name="category_id">
-                    </div>
+                    </div> -->
 
                     </div>
 

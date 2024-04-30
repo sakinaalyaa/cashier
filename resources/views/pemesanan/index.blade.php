@@ -8,11 +8,9 @@
         <div class="c">
             <div class="pagetitle">
                 <h1>Pemesanan</h1>
-
             </div><!-- End Page Title -->
 
             <div class="container">
-                {{-- <div class="item header">Header</div> --}}
                 <div class="item">
                     <ul class="menu-container">
                         @foreach ($jenis as $j)
@@ -29,22 +27,18 @@
                         @endforeach
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="item content">
-            <h3>Order</h3>
+            <h1>Order</h1>
             <ul class="ordered-list">
-
+                <!-- Daftar pesanan akan ditampilkan di sini -->
             </ul>
-            Total Bayar : <h2 id="total"> 0</h2>
+            <p>Total Bayar: <span id="total">0</span></p>
             <div>
                 <button id="btn-bayar">Bayar</button>
             </div>
         </div>
-        <!-- /.card-footer-->
-        </div>
-        <!-- /.card -->
     </main><!-- End #main -->
 </section>
 @endsection
@@ -75,7 +69,7 @@
             txt_subtotal.innerHTML = orderedList[index].harga * orderedList[index].qty;
 
             // Ubah jumlah total
-            $('#total').html(`Rp.${sum()}`);
+            $('#total').html(sum());
         };
 
         // Events
@@ -96,22 +90,23 @@
         });
 
         $('#btn-bayar').on('click', function() {
+            const data = {
+                "_token": "{{ csrf_token() }}",
+                orderedList: orderedList,
+                total: sum()
+            }
+
             $.ajax({
-                url: "{{ route('transaksi.store') }}",
+                url: "{{ route('transaksi.index') }}",
                 method: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    orderedList: orderedList,
-                    total: sum()
-                },
+                data: data,
                 success: function(data) { // Perbaiki pengejaan di sini
-                    console.log('data')
                     console.log(data)
                     swal.fire({
-                        title: data.message,
+                        title: "Transaksi Berhasil",
                         showDenyButton: true,
-                        confirmButtonText: 'Cetak Nota',
-                        denyButtonText: OK
+                        confirmButtonText: `Cetak Nota`,
+                        denyButtonText: "OK"
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.open("{{ url('nota') }}/" + data.notrans)
@@ -128,22 +123,23 @@
             });
         });
 
-        $(".menu-item li").click(function() {
+        $(".menu-item li").click(function(e) {
             // Mengambil data
             const menu_clicked = $(this).text();
-            const data = $(this)[0].dataset;
-            const harga = parseFloat(data.harga);
-            const id = parseInt(data.id);
+            const data = $(e.target);
+
+            const harga = parseFloat($(data).data('harga'));
+            const id = parseInt($(data).data('id'));
 
             if (orderedList.every(list => list.menu_id !== id)) {
                 let dataN = {
                     'menu_id': id,
-                    'menu': menu_clicked,
                     'harga': harga,
                     'qty': 1
                 };
                 orderedList.push(dataN);
-                let listOrder = ` <li data-id="${id}"><h3>${menu_clicked}</h3>`;
+
+                let listOrder = `<li data-id="${id}"><h3>${menu_clicked}</h3>`;
                 listOrder += `Sub Total : Rp. ${harga}`;
                 listOrder += `<button class='remove-item'>hapus</button>
                            <button class="btn-dec"> - </button>`;
@@ -152,8 +148,8 @@
                                   value="1"
                                   style="width:30px"
                                   readonly
-                              />
-                              <button class="btn-inc">+</button><h2>
+                              />`;
+                listOrder += `<button class="btn-inc">+</button><h2>
                               <span class="subtotal">${harga * 1}</span>
                           </li>`;
                 $('.ordered-list').append(listOrder);
@@ -175,7 +171,7 @@
     }
 
     .container {
-
+        border: 1px solid pink;
 
         padding: 0px;
     }
@@ -201,12 +197,10 @@
         list-style-type: none;
         display: flex;
         gap: 1em;
-        padding: 10px 20px;
     }
 
     .menu-item li {
         background-color: beige;
         padding: 10px 20px;
-
     }
 </style>

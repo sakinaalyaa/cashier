@@ -18,14 +18,20 @@
             <div class="col-sm-9">
               <input type="text" class="form-control" id="nama_jenis" placeholder="nama_jenis" name="nama_jenis">
             </div>
-
+<!-- 
             <label for="category_id" class="col-sm-3 col-form-label">Category Id</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="category_id" placeholder="Category Id" name="category_id">
-            </div>
+            </div> -->
 
-          </div>
-          
+            <div class="modal-body">
+              <form method="POST" action="{{ url('jenis/import') }}" enctype="multipart/form-data"> @csrf
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="jenis">File Excel</label>
+                    <input type="file" name="import" id="import">
+                  </div>
+                </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Edit</button>
@@ -34,3 +40,6 @@
     </div>
   </div>
 </div>
+
+
+

@@ -16,4 +16,11 @@ class menu extends Model
     {
         return $this->belongsTo(jenis::class, 'jenis_id'); 
     }
+
+    public function stok()
+    {
+        return $this->belongsTo(stok::class,'id', 'menu_id'); 
+    }
+
 }
+

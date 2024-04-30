@@ -6,6 +6,7 @@ use App\Exports\jenisExport;
 use App\Models\Jenis;
 use App\Http\Requests\StoreJenisRequest;
 use App\Http\Requests\UpdateJenisRequest;
+use App\Imports\JenisImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -75,5 +76,11 @@ class JenisController extends Controller
         $jenis = jenis::all();
         $pdf = Pdf::loadView('jenis.data', compact('jenis'));
         return $pdf->download('jenis.pdf');
+    }
+
+    public function importData(){
+        Excel::import(new JenisImport, request()->file('import'));
+
+        return redirect(request()->segment(1).'/jenis')->with('succes','Import data jenis berhasil!');
     }
 }

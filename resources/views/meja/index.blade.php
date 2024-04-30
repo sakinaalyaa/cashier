@@ -57,6 +57,9 @@
             <i class="fas fa-file-pdf"></i> Export PDF
             </a>
 
+            <button type="button" class="btn btn-warning"data-toggle="modal" data-target="#formImport">
+            <i class="fas fa-file-excel"></i> Import</button>
+
             @include('meja.data')
 
         </div>

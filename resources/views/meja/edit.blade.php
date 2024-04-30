@@ -29,8 +29,14 @@
                             <input type="text" class="form-control" id="status" placeholder="status" name="status">
                         </div>
 
+                        <div class="modal-body">
+                        <form method="POST" action="{{ url('menu/import') }}" enctype="multipart/form-data"> @csrf
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="jenis">File Excel</label>
+                                    <input type="file" name="import" id="import">
+                                </div>
           </div>
-
           <div class="modal-footer">
             <button type="button" class="btn btn-close btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Edit</button>

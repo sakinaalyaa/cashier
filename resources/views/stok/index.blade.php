@@ -58,6 +58,10 @@
             <i class="fas fa-file-pdf"></i> Export PDF
             </a>
 
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cikiniw">
+                <i class="fa fa-file-excel"></i> Import
+            </button>
+
             @include('stok.data')
 
         </div>
@@ -69,7 +73,7 @@
     </div>
     <!-- /.card -->
 
-
+    @include('stok.import')
 </section>
 
 @include('stok.form')
@@ -118,8 +122,10 @@
         $('#modalEditStok').on('show.bs.modal', function(e) {
             let button = $(e.relatedTarget)
             let id = $(button).data('id')
+            let menu_id = $(button).data('menu_id')
             let jumlah = $(button).data('jumlah')
         
+            $(this).find('#menu_id').val(menu_id)
             $(this).find('#jumlah').val(jumlah)
            
             $('#edit-form').attr('action', `/stok/${id}`)

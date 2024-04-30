@@ -35,12 +35,14 @@
             </div>
 
             <div class="modal-body">
-                        <form method="POST" action="{{ url('pelanggan/import') }}" enctype="multipart/form-data"> @csrf
+                        <form method="POST" action="{{ url('import-pelanggan/import') }}" enctype="multipart/form-data"> @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="pelanggan">File Excel</label>
                                     <input type="file" name="import" id="import">
                                 </div>
+
+
 
           </div>
           <div class="modal-footer">

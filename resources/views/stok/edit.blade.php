@@ -14,6 +14,11 @@
           @csrf
           <div class="form-group row">
 
+            <label for="menu_id" class="col-sm-2 col-form-label">Menu Id</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="menu_id" placeholder="menu_id" name="menu_id">
+            </div>
+
             <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="jumlah" placeholder="jumlah" name="jumlah">
