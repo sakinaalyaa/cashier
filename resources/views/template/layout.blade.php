@@ -261,7 +261,7 @@
 
 
 
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link  " href="{{ url('contact') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -281,7 +281,7 @@
             </div>
             <span class="nav-link-text ms-1">Contact Us</span>
           </a>
-        </li> -->
+        </li>
 
         <li class="nav-item">
           <a class="nav-link  " href="{{ url('logout') }}">
@@ -311,7 +311,7 @@
       </form>
 
 
-      <!-- <li class="nav-item">
+      <li class="nav-item">
           <a class="nav-link" href="{{ url('karyawan') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -330,9 +330,9 @@
             </div>
             <span class="nav-link-text ms-1">Karyawan</span>
           </a>
-        </li> -->
+        </li>
 
-      <!-- 
+      
         <li class="nav-item">
           <a class="nav-link" href="{{ url('meja') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -352,9 +352,9 @@
             </div>
             <span class="nav-link-text ms-1">meja</span>
           </a>
-        </li> -->
+        </li>
 
-      <!-- <li class="nav-item">
+      <li class="nav-item">
           <a class="nav-link" href="{{ url('category') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -373,9 +373,9 @@
             </div>
             <span class="nav-link-text ms-1">Category</span>
           </a>
-        </li> -->
+        </li>
 
-      <!-- <li class="nav-item">
+      <li class="nav-item">
           <a class="nav-link" href="{{ url('absensi') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -394,9 +394,9 @@
             </div>
             <span class="nav-link-text ms-1">Absensi</span>
           </a>
-        </li> -->
+        </li>
 
-      <!-- 
+      
         <li class="nav-item">
         <a class="nav-link" href="{{ url('produkTitipan') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -416,7 +416,7 @@
             </div>
             <span class="nav-link-text ms-1">Produk Titipan</span>
           </a>
-        </li> -->
+        </li>
 
       </ul>
     </div>

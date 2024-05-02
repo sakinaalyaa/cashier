@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Coffee Shop</h2>
-    <h5>Jl. Seoul No. 32, 65464</h5>
+    <h5>Jl. Cinta No. 23</h5>
     <hr>
         <h5>No.Faktur : {{ $transaksi->id }}</h5>
         <h5>{{ $transaksi->tanggal }}</h5>

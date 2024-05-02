@@ -7,6 +7,8 @@
 @section('content')
 <section class="content">
 
+
+
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
 <div class="container-fluid py-1 px-3">
@@ -180,7 +182,7 @@ $53,000
 <div class="row">
 <div class="col-8">
 <div class="numbers">
-<p class="text-sm mb-0 text-capitalize font-weight-bold">Laba Rugi</p>
+<p class="text-sm mb-0 text-capitalize font-weight-bold">Laba</p>
 <h5 class="font-weight-bolder mb-0">
 +3,462
 <span class="text-danger text-sm font-weight-bolder">-2%</span>
